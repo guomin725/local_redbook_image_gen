@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Image 2 提示词画廊</title>
+  <meta name="description" content="126 个精选 GPT Image 2 提示词：瀑布流浏览、分类筛选、全文搜索、一键复制。数据来自 YouMind-OpenLab/awesome-gpt-image-2（CC BY 4.0）。">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <h1>🎨 GPT Image 2 提示词画廊</h1>
+        <p class="tagline" id="tagline">加载中…</p>
+      </div>
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="search" placeholder="搜索标题、描述、提示词全文…" autocomplete="off" spellcheck="false">
+        <button type="button" id="clear-search" class="clear-btn" hidden aria-label="清除搜索">✕</button>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <div class="chip-row" id="category-chips" role="group" aria-label="分类筛选"></div>
+      <div class="chip-row sub" id="lang-chips" role="group" aria-label="语言筛选"></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="result-bar">
+      <span id="result-count"></span>
+      <div class="sort-box">
+        <label for="sort">排序</label>
+        <select id="sort">
+          <option value="date-desc">最新优先</option>
+          <option value="date-asc">最早优先</option>
+          <option value="featured">精选优先</option>
+        </select>
+      </div>
+    </div>
+    <div class="masonry" id="grid"></div>
+    <p class="empty" id="empty" hidden>没有匹配的提示词，换个关键词试试。</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      数据与图片来自 <a href="https://github.com/YouMind-OpenLab/awesome-gpt-image-2" target="_blank" rel="noopener">YouMind-OpenLab/awesome-gpt-image-2</a>
+      （提示词 CC BY 4.0，社区收集，仅作教育用途） ·
+      线上画廊 <a href="https://youmind.com/zh-CN/gpt-image-2-prompts" target="_blank" rel="noopener">youmind.com</a>
+    </p>
+  </footer>
+
+  <!-- 详情弹窗 -->
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button type="button" class="modal-close" id="modal-close" aria-label="关闭">✕</button>
+      <div class="modal-images" id="modal-images"></div>
+      <div class="modal-panel">
+        <div class="modal-meta-top" id="modal-meta-top"></div>
+        <h2 id="modal-title"></h2>
+        <p class="modal-desc" id="modal-desc"></p>
+        <div class="prompt-block">
+          <div class="prompt-head">
+            <span>📝 提示词</span>
+            <button type="button" class="copy-btn" id="modal-copy">复制</button>
+          </div>
+          <pre id="modal-prompt"></pre>
+        </div>
+        <div class="modal-links" id="modal-links"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden>已复制到剪贴板</div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
